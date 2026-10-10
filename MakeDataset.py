@@ -1,10 +1,8 @@
 #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 #
-#                                   ES335- Machine Learning- Assignment 1
-#
-# This file is used to create the dataset for the mini-project. The dataset is created by reading the data from
-# the Combined folder. The data is then split into training, testing, and validation sets. This split is supposed
-# to be used for all the modeling purposes.
+# This file is used to create the dataset for the project. The dataset is created by reading the data from
+# the Combined folder. The data is then split into training, testing, and validation sets. This split is
+# used for all the modeling purposes.
 #
 #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -31,7 +29,7 @@ y_train=[]
 dataset_dir = os.path.join(combined_dir,"Train")
 
 for folder in folders:
-    files = os.listdir(os.path.join(dataset_dir,folder))
+    files = sorted(f for f in os.listdir(os.path.join(dataset_dir,folder)) if f.endswith(".csv"))
 
     for file in files:
 
@@ -53,7 +51,7 @@ y_test=[]
 dataset_dir = os.path.join(combined_dir,"Test")
 
 for folder in folders:
-    files = os.listdir(os.path.join(dataset_dir,folder))
+    files = sorted(f for f in os.listdir(os.path.join(dataset_dir,folder)) if f.endswith(".csv"))
     for file in files:
 
         df = pd.read_csv(os.path.join(dataset_dir,folder,file),sep=",",header=0)
@@ -68,7 +66,7 @@ y_test = np.array(y_test)
                                                 # Final Dataset
 #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-# USE THE BELOW GIVEN DATA FOR TRAINING, TESTING, AND VALIDATION purposes
+# The data given below is used for training, testing, and validation purposes
 
 # concatenate the training and testing data
 X = np.concatenate((X_train,X_test))
